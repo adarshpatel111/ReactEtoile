@@ -30,25 +30,6 @@ exports.getAllQA = async (req, res) => {
   }
 };
 
-// Get a specific question and answer by ID
-// exports.getQAById = async (req, res) => {
-//   const { id } = req.params;
-
-//   try {
-//     const qa = await QA.findById(id);
-//     if (!qa) {
-//       return res.status(404).json({ error: "Question and answer not found" });
-//     }
-//     res.status(200).json(qa);
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .json({
-//         error: "Failed to fetch question and answer",
-//         message: err.message,
-//       });
-//   }
-// };
 
 // Update a question and answer by ID
 exports.updateQA = async (req, res) => {
@@ -84,24 +65,3 @@ exports.updateQA = async (req, res) => {
   }
 };
 
-// Delete a question and answer by ID
-// exports.deleteQA = async (req, res) => {
-//   const { id } = req.params;
-
-//   try {
-//     const deletedQA = await QA.findByIdAndDelete(id);
-//     if (!deletedQA) {
-//       return res.status(404).json({ error: "Question and answer not found" });
-//     }
-//     res
-//       .status(200)
-//       .json({ message: "Question and answer deleted successfully" });
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .json({
-//         error: "Failed to delete question and answer",
-//         message: err.message,
-//       });
-//   }
-// };
