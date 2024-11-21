@@ -1,7 +1,7 @@
 // routes/qaRoutes.js
 const express = require("express");
 const QueAnsRouter = express.Router();
-const qaController = require("../controllers/questionAnswercontroller.js");
+const qaController = require("../controllers/questionAnswerController.js");
 
 // Define the routes and link them to controller functions
 QueAnsRouter.get("/", qaController.getAllQA); // Get all questions and answers
