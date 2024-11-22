@@ -76,12 +76,12 @@ const QueAns = () => {
     }
   };
   return (
-    <Stack sx={{ width: "80%", margin: "auto", marginBottom: 4 }}>
+    <Stack sx={{ width: "100%", margin: "auto", marginBottom: 4 }}>
       <Stack
         direction="row"
         spacing={2}
         sx={{
-          backgroundColor: "lightgray",
+          backgroundColor: "#92dcf7",
           padding: 3,
           alignItems: "center",
           justifyContent: "center",
@@ -111,7 +111,7 @@ const QueAns = () => {
 
       <Stack>
         {questionAnswer.length > 0 ? (
-          questionAnswer.map((item) => (
+          questionAnswer.map((item,ind) => (
             <Accordion
               key={item._id}
               expanded={expanded === item._id}
@@ -126,6 +126,7 @@ const QueAns = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
+                  backgroundColor:ind%2===0?'#f1f1f1':'#e0e0e0',
                 }}
               >
                 {expanded === item._id ? (
@@ -141,7 +142,7 @@ const QueAns = () => {
                       fontWeight: "bold",
                       fontFamily: "Montserrat",
                       fontSize: { xs: "14px", md: "18px" },
-                      whiteSpace: "pre-wrap", 
+                      whiteSpace: "pre-wrap",
                     }}
                   >
                     {item.question} {"\n"}
@@ -149,7 +150,11 @@ const QueAns = () => {
                       <img
                         src={item.image}
                         alt="image"
-                        style={{ width: "100px", height: "auto", marginTop: "8px" }}
+                        style={{
+                          width: "100px",
+                          height: "auto",
+                          marginTop: "8px",
+                        }}
                       />
                     )}
                   </Typography>
