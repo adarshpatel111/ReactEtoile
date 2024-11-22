@@ -11,9 +11,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL;
 const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT;
 const corsOptions = {
-  origin: [FRONTEND_URL],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: [FRONTEND_URL]
 };
 
 app.use(cors(corsOptions));
@@ -27,7 +25,7 @@ mongoose
     console.error("MongoDB connection error:", error);
     process.exit(1); // Exit process if DB connection fails
   });
-  
+
 // Define a route
 app.get("/qa", (req, res) => {
   res.send("Hello, World!");
