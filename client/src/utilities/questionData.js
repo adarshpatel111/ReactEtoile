@@ -353,13 +353,14 @@ function TextInputWithFocusButton() {
     answer: `The useMemo hook memoizes costly calculations, recomputing them only when dependencies change. This enhances performance by avoiding unnecessary recalculations. It should be used for computationally intensive functions that don't need to run on every render.`,
 
     example: `const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);`,
+    queType: "React",
   },
   {
     id: 32,
     question:
       "What is the useReducer hook in React and when should it be used?",
     answer: `The useReducer hook manages complex state logic in functional components, serving as an alternative to useState. It's ideal when state has multiple fields, or when the next state relies on the previous one.`,
-
+    queType: "React",
     example: `
 const [state, dispatch] = useReducer(reducer, initialState);`,
   },
@@ -368,6 +369,7 @@ const [state, dispatch] = useReducer(reducer, initialState);`,
     question: "What is the useId hook in React and when should it be used?",
     answer: `The useId hook generates unique IDs for elements within a component, which is crucial for accessibility by linking form inputs and labels. It guarantees unique IDs across the application even if the component renders multiple times.
 `,
+    queType: "React",
     example: `
 import { useId } from 'react';
 function MyComponent() {
@@ -384,7 +386,7 @@ function MyComponent() {
     id: 34,
     question: "Can you explain how to create and use custom hooks in React?",
     answer: `Custom hooks are functions that start with 'use' and allow you to reuse stateful logic across components.`,
-
+    queType: "React",
     example: `
 function useForm(initialState) {
   const [formData, setFormData] = useState(initialState);
@@ -403,12 +405,14 @@ function MyForm() {
     id: 35,
     question: "What does re-rendering mean in React?",
     answer: `Re-rendering in React is the process of updating the UI in response to changes in a component's state or props. React recalculates JSX, compares it with the previous version using the Virtual DOM, and updates only the changed parts of the real DOM.`,
+    queType: "React",
   },
   {
     id: 36,
     question: "What is forwardRef() in React used for?",
     answer: `forwardRef() allows passing a ref through a component to one of its children. Useful for accessing a DOM element or a child component's instance directly from a parent.
 `,
+    queType: "React",
     example: `
 import React, { forwardRef } from 'react';
 const MyComponent = forwardRef((props, ref) => <input ref={ref} {...props} />);`,
@@ -417,12 +421,14 @@ const MyComponent = forwardRef((props, ref) => <input ref={ref} {...props} />);`
     id: 37,
     question: "What are error boundaries in React for?",
     answer: `Error boundaries catch JavaScript errors in child components, log them, and display a fallback UI instead of crashing the app. They use componentDidCatch and getDerivedStateFromError.`,
+    queType: "React",
   },
   {
     id: 38,
     question: "What is React Suspense?",
     answer: `React Suspense allows handling asynchronous operations with fallback content while resources load. Often used with React.lazy() for code splitting.
 `,
+    queType: "React",
     example: `
 const LazyComponent = React.lazy(() => import('./LazyComponent'));
 function MyComponent() {
@@ -437,11 +443,13 @@ function MyComponent() {
     id: 39,
     question: "Explain what React hydration is?",
     answer: `Hydration is the process of attaching event listeners and making server-rendered HTML interactive on the client side. After SSR, React hydrates the static HTML into a fully interactive app.`,
+    queType: "React",
   },
   {
     id: 40,
     question: "What are React Portals used for?",
     answer: `React Portals let you render children into a DOM node outside the parent component’s hierarchy. Useful for modals, tooltips, and popups that must escape CSS constraints.`,
+    queType: "React",
   },
   {
     id: 41,
@@ -454,6 +462,7 @@ Benefits:
 - Warns about unexpected state changes
 - Enforces best practices
 `,
+    queType: "React",
     example: `
 <React.StrictMode>
   <App />
@@ -464,6 +473,7 @@ Benefits:
     question: "What is code splitting in a React application?",
     answer: `Code splitting divides code into smaller chunks loaded on demand, improving performance by reducing initial bundle size. Achieved via dynamic import() or React.lazy + Suspense.
 `,
+    queType: "React",
     example: `
 const LazyComponent = React.lazy(() => import('./LazyComponent'));
 function App() {
@@ -483,6 +493,7 @@ function App() {
 - Split contexts so only related state updates re-render consumers
 - Use selectors to limit updates to necessary components
 `,
+    queType: "React",
     example: `
 const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);`,
   },
@@ -494,12 +505,14 @@ const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);`,
 - Actions: Objects describing events
 - Stores: Hold application state and logic
 - Views: React components listening to stores`,
+    queType: "React",
   },
   {
     id: 45,
     question: "Explain one-way data flow of React",
     answer: `In React, data flows in a single direction: from parent → child via props. To update parent data, children call callback functions passed down as props.
 `,
+    queType: "React",
     example: `
 function Parent() {
   const [count, setCount] = React.useState(0);
@@ -517,6 +530,7 @@ function Child({ count, increment }) {
 - Overuse can make code harder to maintain
 - Not ideal for frequently updated or complex state
 Best for lightweight global data (e.g., theme, user auth).`,
+    queType: "React",
   },
   {
     id: 47,
@@ -528,6 +542,7 @@ Best for lightweight global data (e.g., theme, user auth).`,
 - Missing keys or using array index as keys in lists
 - Excessive inline functions in render
 - Deeply nested state structures`,
+    queType: "React",
   },
   {
     id: 48,
@@ -537,6 +552,7 @@ Best for lightweight global data (e.g., theme, user auth).`,
 - Local component state → use React useState
 - Shared lightweight global state → use Context
 - Complex/global state with advanced features (e.g., middleware, time travel) → use external managers like Redux, MobX, Zustand`,
+    queType: "React",
   },
   {
     id: 49,
@@ -547,6 +563,7 @@ Best for lightweight global data (e.g., theme, user auth).`,
 3. Virtual DOM diffing determines necessary DOM changes
 Note: Updates may be asynchronous for performance.
 `,
+    queType: "React",
     example: `
 function Counter() {
   const [count, setCount] = React.useState(0);
@@ -558,6 +575,7 @@ function Counter() {
     question: "Explain prop drilling",
     answer: `Prop drilling happens when data is passed through many layers of components that don’t use it, just to reach a deeply nested child.
 `,
+    queType: "React",
     example: `
 function Grandparent() {
   const data = 'Hello';
@@ -577,6 +595,7 @@ function Child({ data }) {
     question: "Describe lazy loading in React",
     answer: `Lazy loading is a technique where components are loaded only when they are needed, reducing initial load time and improving performance.
 `,
+    queType: "React",
     example: `
 import React, { Suspense, lazy } from 'react';
 const LazyComponent = lazy(() => import('./LazyComponent'));
@@ -594,6 +613,7 @@ function App() {
     question: "Discuss synthetic events in React",
     answer: `Synthetic events are React's cross-browser wrapper around native DOM events. They normalize event handling and provide consistent APIs (e.g., preventDefault, stopPropagation). React uses event pooling for performance.
 `,
+    queType: "React",
     example: `
 function MyComponent() {
   const handleClick = (event) => {
@@ -619,18 +639,21 @@ Updating:
 
 Unmounting:
 - componentWillUnmount: cleanup (event listeners, timers)`,
+    queType: "React",
   },
   {
     id: 54,
     question:
       "What is Concurrent Mode in React, and how does it improve rendering performance?",
     answer: `Concurrent Mode lets React interrupt and prioritize work, handling multiple tasks without blocking the UI. It improves responsiveness by breaking rendering into smaller units and prioritizing urgent updates.`,
+    queType: "React",
   },
   {
     id: 55,
     question:
       "How does React handle concurrent rendering with multiple updates and prioritize them?",
     answer: `React uses a priority system in Concurrent Mode. It schedules updates, breaking large ones into smaller chunks, prioritizing urgent user interactions (e.g., typing, clicks) over less urgent updates (e.g., rendering a list).`,
+    queType: "React",
   },
   {
     id: 56,
@@ -642,6 +665,7 @@ Unmounting:
 - Break tasks into smaller chunks
 - Use useMemo to memoize heavy computations
 `,
+    queType: "React",
     example: `
 useEffect(() => {
   setTimeout(() => {
@@ -658,6 +682,7 @@ useEffect(() => {
 - Faster initial load (HTML is ready to display)
 - Better SEO (search engines crawl HTML)
 - Efficient hydration process on client`,
+    queType: "React",
   },
   {
     id: 58,
@@ -666,12 +691,14 @@ useEffect(() => {
 - Very fast performance (static files served by CDN)
 - SEO friendly
 - Ideal for content-driven sites (blogs, docs)`,
+    queType: "React",
   },
   {
     id: 59,
     question: "What are higher-order components in React?",
     answer: `HOCs are functions that take a component and return a new one with enhanced behavior/props. Useful for reusing logic across multiple components.
 `,
+    queType: "React",
     example: `
 const withExtraProps = (Wrapped) => {
   return (props) => <Wrapped {...props} extraProp="value" />;
@@ -688,12 +715,14 @@ const EnhancedComponent = withExtraProps(MyComponent);`,
 - Container components: Manage state, data fetching, business logic, pass props to presentational components.
 
 This separation improves maintainability and reusability.`,
+    queType: "React",
   },
   {
     id: 61,
     question: "What are render props in React?",
     answer: `Render props allow code sharing between components via a prop that is a function returning React elements. This enables data or logic to be reused.
 `,
+    queType: "React",
     example: `
 class DataFetcher extends React.Component {
   state = { data: null };
@@ -714,6 +743,7 @@ class DataFetcher extends React.Component {
     question: "Explain the composition pattern in React.",
     answer: `Composition builds UIs by combining smaller components instead of inheritance. Components are passed as children or props.
 `,
+    queType: "React",
     example: `
 function Dialog(props) {
   return <div className="dialog">{props.children}</div>;
@@ -732,6 +762,7 @@ function WelcomeDialog() {
     question: "How do you re-render the view when the browser is resized?",
     answer: `Listen for the resize event, store dimensions in state, and re-render.
 `,
+    queType: "React",
     example: `
 function ResizeComponent() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -749,6 +780,7 @@ function ResizeComponent() {
       "How do you handle asynchronous data loading in React applications?",
     answer: `Use useEffect for fetching and useState for tracking results.
 `,
+    queType: "React",
     example: `
 const FetchData = () => {
   const [data, setData] = useState(null);
@@ -779,11 +811,13 @@ const FetchData = () => {
 - Forgetting cleanup of subscriptions → memory leaks
 - Fetching inside wrong lifecycle (causes multiple requests)
 - Not canceling stale requests when component unmounts`,
+    queType: "React",
   },
   {
     id: 66,
     question: "What is a React Router?",
     answer: `React Router is a library for client-side routing in React apps. It maps URL paths to components, enabling navigation without reloading the page.`,
+    queType: "React",
   },
   {
     id: 67,
@@ -791,6 +825,7 @@ const FetchData = () => {
       "How does React Router work, and how do you implement dynamic routing?",
     answer: `It matches URLs to components. Dynamic routing uses parameters.
 `,
+    queType: "React",
     example: `
 function UserPage() {
   const { id } = useParams();
@@ -806,6 +841,7 @@ function UserPage() {
       "How do you handle nested routes and route parameters in React Router?",
     answer: `Use <Outlet> for nested UI and useParams for dynamic params.
 `,
+    queType: "React",
     example: `
 <Routes>
   <Route path="user/:userId" element={<Outlet />}>
@@ -822,12 +858,14 @@ function UserProfile() {
     question: "What is the difference between BrowserRouter and HashRouter?",
     answer: `- BrowserRouter: Uses HTML5 history API, clean URLs (requires server setup for deep links).
 - HashRouter: Uses URL hash (#) for routes, no server setup needed, works well for static hosting.`,
+    queType: "React",
   },
   {
     id: 70,
     question: "How React Router is different from the history library?",
     answer: `- React Router: Full routing solution → maps routes to components, manages navigation, nested routes, etc.
 - history: Low-level library that just manages browser history stack (push, replace, go). React Router uses history internally.`,
+    queType: "React",
   },
   {
     id: 71,
@@ -837,6 +875,7 @@ function UserProfile() {
 <MemoryRouter>: Keeps history in memory (no URL change), used in tests or non-browser envs.
 <StaticRouter>: Used for server-side rendering (SSR) in Node.js.
 All provide the same routing functionality but suit different environments.`,
+    queType: "React",
   },
   {
     id: 72,
@@ -846,6 +885,7 @@ Example: history.push('/new-page')
 
 replace(): Replaces current entry → user cannot go back.
 Example: history.replace('/new-page')`,
+    queType: "React",
   },
   {
     id: 73,
@@ -859,6 +899,7 @@ In React Router v5: useHistory hook.
 Example:
 const history = useHistory();
 <button onClick={() => history.push('/new-page')}>Go</button>`,
+    queType: "React",
   },
   {
     id: 74,
@@ -866,6 +907,7 @@ const history = useHistory();
       "How would you implement route guards or private routes in React?",
     answer: `Wrap routes in a PrivateRoute component that checks authentication.
 `,
+    queType: "React",
     example: `
 function PrivateRoute({ children }) {
   return isAuthenticated ? children : <Navigate to="/login" />;
@@ -877,6 +919,7 @@ function PrivateRoute({ children }) {
       "How do you manage the active route state in a multi-page React application?",
     answer: `Use useLocation to get current path and apply active styles.
 `,
+    queType: "React",
     example: `
 const location = useLocation();
 <li className={location.pathname === '/home' ? 'active' : ''}>Home</li>`,
@@ -886,6 +929,7 @@ const location = useLocation();
     question: "How do you handle 404 errors or page not found in React Router?",
     answer: `Add a catch-all route at the end.
 `,
+    queType: "React",
     example: `
 <Route path="*" element={<NotFound />} />
 function NotFound() {
@@ -897,6 +941,7 @@ function NotFound() {
     question: "How to get query parameters in React Router?",
     answer: `Use useSearchParams in v6.
 `,
+    queType: "React",
     example: `
 const [searchParams] = useSearchParams();
 const param = searchParams.get('id');`,
@@ -907,6 +952,7 @@ const param = searchParams.get('id');`,
       "How do you perform an automatic redirect after login in React Router?",
     answer: `Use useNavigate after successful login.
 `,
+    queType: "React",
     example: `
 const navigate = useNavigate();
 function handleLogin() {
@@ -919,6 +965,7 @@ function handleLogin() {
     question: "How do you pass props to a route component in React Router?",
     answer: `In v6, pass props via the element prop.
 `,
+    queType: "React",
     example: `
 <Route path="/my-route" element={<MyComponent propValue="Hello" />} />`,
   },
@@ -928,6 +975,7 @@ function handleLogin() {
     answer: `Use libraries like react-i18next or react-intl.
 Define translation files and use hooks/components to translate.
 `,
+    queType: "React",
     example: `// Example using react-i18next
 import { useTranslation } from 'react-i18next';
 
