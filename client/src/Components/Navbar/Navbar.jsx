@@ -19,39 +19,39 @@ const Navbar = () => {
         zIndex: 100,
       }}
     >
+      {/* Logo / Brand */}
       <Stack
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
           fontSize: "1rem",
           fontFamily: "Montserrat",
+          fontWeight: "bold",
         }}
       >
         ReactEtoile
       </Stack>
+
+      {/* Navigation Links */}
       <Stack
         sx={{
           flexDirection: "row",
-          justifyContent: "space-between",
           gap: 3,
           alignItems: "center",
           cursor: "pointer",
-          "& > :hover": { color: "#92dcf7" }, // incorrect syntax
-          "& >": {
-            // correct syntax
-            "&:hover": { color: "#92dcf7" },
-          },
           fontSize: "1rem",
           fontFamily: "Montserrat",
+          "& > div:hover": { color: "#92dcf7" }, // ✅ correct hover syntax
         }}
       >
-        {links.map((link) => {
-          return <div>{link}</div>;
-        })}
+        {links.map((link, index) => (
+          <div key={index}>{link}</div>
+        ))}
       </Stack>
     </Stack>
   );
 };
+
 export default Navbar;
 
 const links = ["Home", "About", "Contact"];
