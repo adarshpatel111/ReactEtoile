@@ -10,7 +10,7 @@ const Home = () => {
       }}
     >
       <Banner />
-      <Stack sx={{ width: "80%", margin: "auto" }}>
+      <Stack sx={{ width: { xs: "100%", md: "80%" }, margin: "auto" }}>
         <QueAns />
       </Stack>
     </Stack>
