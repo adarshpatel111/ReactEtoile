@@ -1,24 +1,24 @@
 import * as React from "react";
 import {
-  Card,
-  CardContent,
-  CardHeader,
+  Container,
   Typography,
-  Chip,
   Stack,
+  Chip,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Box,
   Tooltip,
   IconButton,
-  Grid,
-  Box,
-  Container,
-  Divider,
 } from "@mui/material";
-import Inventory2SharpIcon from "@mui/icons-material/Inventory2Sharp";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import Inventory2SharpIcon from "@mui/icons-material/Inventory2Sharp";
 import { useState } from "react";
 import { questionData } from "../../utilities/questionData";
 
 const QueAns = () => {
+  // ✅ Correct useState without TS types
   const [copiedExampleId, setCopiedExampleId] = useState(null);
   const [selectedChip, setSelectedChip] = useState("All");
   const [chips] = useState([
@@ -45,7 +45,7 @@ const QueAns = () => {
       : questionData.filter((item) => item.queType === selectedChip);
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
+    <Container maxWidth="md" sx={{ py: { xs: 2, md: 4 } }}>
       {/* Page Header */}
       <Typography
         variant="h4"
@@ -53,23 +53,23 @@ const QueAns = () => {
         sx={{
           fontWeight: "bold",
           fontFamily: "Montserrat",
-          mb: { xs: 3, md: 4 },
+          mb: { xs: 2, md: 3 },
         }}
       >
         📘 Interview Questions
       </Typography>
 
-      {/* Chip Section */}
+      {/* Chip Filter */}
       <Stack
         direction="row"
-        spacing={1.5}
+        spacing={1.2}
         sx={{
           backgroundColor: "#f9fafb",
-          p: 2,
+          p: 1.5,
           borderRadius: 3,
           justifyContent: "center",
           flexWrap: "wrap",
-          mb: { xs: 3, md: 5 },
+          mb: { xs: 3, md: 4 },
         }}
       >
         {chips.map((chip) => (
@@ -78,7 +78,6 @@ const QueAns = () => {
             label={chip.label}
             clickable
             sx={{
-              px: 1.5,
               fontWeight: selectedChip === chip.label ? "bold" : "normal",
               borderColor:
                 selectedChip === chip.label ? "primary.main" : "gray",
@@ -93,98 +92,94 @@ const QueAns = () => {
 
       {/* Questions Section */}
       {filteredData.length > 0 ? (
-        <Grid container spacing={3}>
-          {filteredData.map((item) => (
-            <Grid item xs={12} sm={6} md={6} key={item.id}>
-              <Card
+        filteredData.map((item) => (
+          <Accordion
+            key={item.id}
+            sx={{
+              mb: 2,
+              borderRadius: 2,
+              overflow: "hidden",
+              "&:before": { display: "none" },
+              boxShadow: 2,
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              sx={{
+                backgroundColor: "#f1f5f9",
+                "& .MuiTypography-root": {
+                  fontWeight: "bold",
+                  fontSize: { xs: "15px", md: "16px" },
+                  fontFamily: "Montserrat",
+                },
+              }}
+            >
+              {`${item.id}. ${item.question}`}
+            </AccordionSummary>
+            <AccordionDetails sx={{ backgroundColor: "white" }}>
+              <Typography
                 sx={{
-                  borderRadius: 3,
-                  boxShadow: 3,
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                  "&:hover": { transform: "translateY(-4px)", boxShadow: 6 },
+                  fontFamily: "Montserrat",
+                  fontSize: { xs: "14px", md: "15px" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  whiteSpace: "pre-wrap",
                 }}
               >
-                <CardHeader
-                  title={
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        fontWeight: "bold",
-                        fontFamily: "Montserrat",
-                        fontSize: { xs: "15px", md: "17px" },
-                        whiteSpace: "pre-wrap",
-                      }}
-                    >
-                      {`${item.id}. ${item.question}`}
-                    </Typography>
-                  }
-                />
-                <Divider />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Montserrat",
-                      fontSize: { xs: "14px", md: "15px" },
-                      lineHeight: 1.6,
-                      color: "text.secondary",
-                      whiteSpace: "pre-wrap",
-                    }}
-                  >
-                    {item.answer}
-                  </Typography>
+                {item.answer}
+              </Typography>
 
-                  {item.example && (
-                    <Box
-                      sx={{
-                        position: "relative",
-                        border: "1px solid #e5e7eb",
-                        borderRadius: 2,
-                        backgroundColor: "#1e293b",
-                        color: "#f1f5f9",
-                        p: 2,
-                        mt: 2,
-                        fontFamily: "monospace",
-                        fontSize: { xs: "13px", md: "14px" },
-                        minHeight: "80px",
-                        maxHeight: "220px",
-                        overflowY: "auto",
-                      }}
+              {item.example && (
+                <Box
+                  sx={{
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 2,
+                    backgroundColor: "#1e293b",
+                    color: "#f1f5f9",
+                    mt: 2,
+                    fontFamily: "monospace",
+                    fontSize: { xs: "13px", md: "14px" },
+                  }}
+                >
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    p={1}
+                  >
+                    <Typography sx={{ fontSize: "0.85rem", color: "#ccc" }}>
+                      Example
+                    </Typography>
+                    <Tooltip
+                      title={
+                        copiedExampleId === item.id
+                          ? "Copied!"
+                          : "Copy to clipboard"
+                      }
+                      placement="top"
                     >
-                      <pre style={{ margin: 0 }}>
-                        <code>{item.example}</code>
-                      </pre>
-                      <Tooltip
-                        title={
-                          copiedExampleId === item.id
-                            ? "Copied!"
-                            : "Copy to clipboard"
-                        }
-                        placement="top"
+                      <IconButton
+                        size="small"
+                        sx={{
+                          backgroundColor: "rgba(255,255,255,0.9)",
+                          "&:hover": { backgroundColor: "#f0f0f0" },
+                        }}
+                        onClick={() => handleCopy(item.id, item.example)}
                       >
-                        <IconButton
-                          size="small"
-                          sx={{
-                            position: "absolute",
-                            top: 8,
-                            right: 8,
-                            backgroundColor: "rgba(255,255,255,0.9)",
-                            "&:hover": { backgroundColor: "#f0f0f0" },
-                          }}
-                          onClick={() => handleCopy(item.id, item.example)}
-                        >
-                          <ContentCopyIcon fontSize="small" />
-                        </IconButton>
-                      </Tooltip>
-                    </Box>
-                  )}
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Stack>
+                  <Box sx={{ overflowX: "auto", p: 2 }}>
+                    <pre style={{ margin: 0 }}>
+                      <code>{item.example}</code>
+                    </pre>
+                  </Box>
+                </Box>
+              )}
+            </AccordionDetails>
+          </Accordion>
+        ))
       ) : (
         <Stack
           alignItems="center"
