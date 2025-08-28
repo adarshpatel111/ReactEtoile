@@ -45,7 +45,7 @@ const Banner = () => {
               color: theme.palette.primary.main,
             }}
           >
-            Master JavaScript and MERN Stack with Expert Q&A
+            Master JavaScript and Frontend with Expert Q&A
           </Typography>
           <Typography
             variant="body1"
